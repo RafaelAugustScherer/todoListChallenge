@@ -1,14 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
 import User from './user';
+import { now } from '../utils/time';
 
 class Task extends Model {}
-
-const now = () => {
-  const d = new Date();
-  d.setHours(d.getHours() - 3);
-  return d.toUTCString();
-};
 
 Task.init({
   id: {

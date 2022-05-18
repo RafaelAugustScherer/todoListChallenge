@@ -17,7 +17,7 @@ const config: Options = {
   port: Number(process.env.MYSQL_PORT) || 3306,
   dialect: 'mysql',
   dialectOptions: {
-    timezone: 'Z',
+    timezone: '-03:00',
   },
 };
 
