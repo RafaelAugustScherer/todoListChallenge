@@ -2,10 +2,10 @@ import { RequestHandler} from 'express';
 import userService from '../service/user';
 
 const login: RequestHandler = async (_req, res) => {
-  const { user } = res.locals;
-  const publicUser = await userService.login(user);
+  const { user, token } = res.locals;
+  await userService.login(user);
 
-  return res.status(200).json(publicUser);
+  return res.status(200).json({ token });
 };
 
 const findOne: RequestHandler = async (_req, res) => {
