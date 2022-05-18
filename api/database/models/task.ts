@@ -4,6 +4,12 @@ import User from './user';
 
 class Task extends Model {}
 
+const now = () => {
+  const d = new Date();
+  d.setHours(d.getHours() - 3);
+  return d.toUTCString();
+};
+
 Task.init({
   id: {
     type: DataTypes.INTEGER,
@@ -25,7 +31,7 @@ Task.init({
   },
   createdAt: {
     type: DataTypes.DATE,
-    defaultValue: Date.now(),
+    defaultValue: now(),
     allowNull: false,
   },
 }, {

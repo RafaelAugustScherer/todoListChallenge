@@ -7,6 +7,7 @@ module.exports = {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
+          autoIncrement: true,
           allowNull: false,
         },
         name: {
@@ -28,7 +29,7 @@ module.exports = {
         },
         createdAt: {
           type: Sequelize.DATE,
-          defaultValue: Sequelize.literal('current_timestamp()'),
+          defaultValue: Sequelize.fn('now'),
           allowNull: false,
         },
       },
