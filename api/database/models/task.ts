@@ -2,12 +2,7 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 import User from './user';
 
-class Task extends Model {
-  public id!: number;
-  public name!: string;
-  public status!: string;
-  public userId!: number;
-}
+class Task extends Model {}
 
 Task.init({
   id: {
