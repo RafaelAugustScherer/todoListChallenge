@@ -26,6 +26,11 @@ module.exports = {
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
         },
+        createdAt: {
+          type: Sequelize.DATE,
+          defaultValue: Sequelize.literal('current_timestamp()'),
+          allowNull: false,
+        },
       },
     );
   },

@@ -23,9 +23,15 @@ Task.init({
     type: DataTypes.NUMBER,
     allowNull: false,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: Date.now(),
+    allowNull: false,
+  },
 }, {
   sequelize: db,
   modelName: 'tasks',
+  timestamps: false,
 });
 
 Task.belongsTo(User, { foreignKey: 'userId' as 'id' });

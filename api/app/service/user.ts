@@ -3,12 +3,11 @@ import { IUser, IUserPublic, IUserQuery } from '../interface/user';
 import { ERRORS } from '../utils/error';
 import { encryptPassword } from '../utils/user';
 
-const removeUndefinedFromObject = (object: {}) => JSON.parse(JSON.stringify(object));
+const removeUndefinedFromObject = (object: any) => JSON.parse(JSON.stringify(object));
 
 const getPublicUser = (user: User): IUserPublic => {
-  const userPublic = user.get();
-  const { password, ...userWithoutPassword } = userPublic;
-  return userWithoutPassword;
+  const { password, ...publicUser } = user.get();
+  return publicUser;
 };
 
 const login = async (user: IUser): Promise<IUserPublic> => {
