@@ -5,17 +5,18 @@
   "main": "build/app/index.js",
   "scripts": {
     "build": "npx -y tsc",
-    "generate:salt": "node ./app/utils/test",
+    "db:salt:generate": "node ./app/utils/test",
     "db:drop": "npx sequelize-cli db:drop",
     "db:create": "npx sequelize-cli db:create",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:seed": "npx sequelize-cli db:seed:all",
     "db:restart": "npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed",
-    "dev": "NODE_ENV=development npm run db:restart && node .",
-    "prestart": "npm run build && npm run db:restart",
+    "predev": "npm run build && NODE_ENV=development npm run db:restart",
+    "prestart": "npm run build",
     "pretest": "NODE_ENV=test npm run db:restart",
     "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development ts-node-dev ./app"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +36,8 @@
     "@types/node": "^17.0.34",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
-    "eslint": "^8.15.0"
+    "eslint": "^8.15.0",
+    "nodemon": "^2.0.16",
+    "ts-node-dev": "^1.1.8"
   }
 }
