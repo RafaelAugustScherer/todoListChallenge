@@ -4,7 +4,7 @@ module.exports = {
   async up(queryInterface: QueryInterface) {
     await queryInterface.bulkInsert('users', [{
       username: 'Tester',
-      password: 'Tester_password',
+      password: '$2a$10$EizX73GJO1Sv5L/bPY0I2eMEuj0wftoOLSCdJAelJZNGtpxWvz0qO',
     }], {});
   },
   async down(queryInterface: QueryInterface) {

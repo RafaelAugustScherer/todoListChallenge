@@ -4,6 +4,11 @@ export interface IUser {
   password: string,
 }
 
+export interface IUserPublic {
+  id: number,
+  usermane: string,
+}
+
 export interface IUserQuery {
   id?: number,
   username?: string,

@@ -1,18 +1,36 @@
 import User from '../../database/models/user';
-import { IUser, IUserQuery } from '../interface/user';
+import { IUser, IUserPublic, IUserQuery } from '../interface/user';
 import { ERRORS } from '../utils/error';
+import { encryptPassword } from '../utils/user';
 
-const findOne = async (filter: IUserQuery): Promise<IUser> => {
-  const query = JSON.parse(JSON.stringify(filter));
-  const user = await User.findOne({ where: { ...query } });
+const removeUndefinedFromObject = (object: {}) => JSON.parse(JSON.stringify(object));
 
-  if (!user) throw ERRORS.USER.NOT_FOUND;
-
+const getPublicUser = (user: User): IUserPublic => {
   const userPublic = user.get();
   const { password, ...userWithoutPassword } = userPublic;
   return userWithoutPassword;
 };
 
+const login = async (user: IUser): Promise<IUserPublic> => {
+  const passwordHash = encryptPassword(user.password);
+  const query = { ...user, password: passwordHash };
+
+  const response = await User.findOne({ where: { ...query } });
+  if (!response) throw ERRORS.USER.NOT_FOUND;
+
+  return getPublicUser(response);
+};
+
+const findOne = async (filter: IUserQuery): Promise<IUserPublic> => {
+  const query = removeUndefinedFromObject(filter);
+
+  const response = await User.findOne({ where: { ...query } });
+  if (!response) throw ERRORS.USER.NOT_FOUND;
+
+  return getPublicUser(response);
+};
+
 export default {
+  login,
   findOne,
 };

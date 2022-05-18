@@ -6,6 +6,6 @@ const encryptPassword = (password: string) => {
   return bcrypt.hashSync(password, PASSWORD_SALT);
 };
 
-export default {
+export {
   encryptPassword,
 };
