@@ -7,6 +7,7 @@ const Error = (status: number, message: string) => ({
 export const ERRORS = {
   USER: {
     NOT_FOUND: Error(404, 'User not found'),
+    ALREADY_TAKEN: Error(409, 'Username already taken'),
   },
   AUTH: {
     TOKEN_NOT_FOUND: Error(401, 'Token not found'),

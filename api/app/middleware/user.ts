@@ -19,7 +19,17 @@ const validateFilter: RequestHandler = async (req, res, next) => {
   return next();
 };
 
+const validateCreate: RequestHandler = async (req, res, next) => {
+  const { username, password } = req.body;
+
+  const user = await schema.create.validateAsync({ username, password });
+  res.locals.user = user;
+
+  return next();
+};
+
 export default {
   validateLogin,
   validateFilter,
+  validateCreate,
 };

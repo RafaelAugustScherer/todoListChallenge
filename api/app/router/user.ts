@@ -18,6 +18,10 @@ userRouter.route('/user')
     userMiddleware.validateFilter,
     authMiddleware.validateToken,
     userController.findOne,
+  )
+  .post(
+    userMiddleware.validateCreate,
+    userController.create,
   );
 
 

@@ -30,7 +30,17 @@ const findOne = async (filter: IUserQuery): Promise<IUserPublic> => {
   return getPublicUser(response);
 };
 
+const create = async (user: IUser): Promise<IUserPublic> => {
+  const userExists = await User.findOne({ where: { username: user.username } });
+  if (userExists) throw ERRORS.USER.ALREADY_TAKEN;
+
+  const response = await User.create({ ...user });
+
+  return getPublicUser(response);
+};
+
 export default {
   login,
   findOne,
+  create,
 };

@@ -10,7 +10,13 @@ const filter = Joi.object({
   username: Joi.string(),
 }).or('id', 'username');
 
+const create = Joi.object({
+  username: Joi.string().min(6).required(),
+  password: Joi.string().min(6).required(),
+});
+
 export default {
   login,
   filter,
+  create,
 };

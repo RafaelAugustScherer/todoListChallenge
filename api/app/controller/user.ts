@@ -15,7 +15,15 @@ const findOne: RequestHandler = async (_req, res) => {
   return res.status(200).json(user);
 };
 
+const create: RequestHandler = async (_req, res) => {
+  const { user } = res.locals;
+  const publicUser = await userService.create(user);
+  
+  return res.status(201).json(publicUser);
+};
+
 export default {
   login,
   findOne,
+  create,
 };
