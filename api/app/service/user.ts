@@ -33,7 +33,8 @@ const create = async (user: IUser): Promise<IUserPublic> => {
   const userExists = await User.findOne({ where: { username: user.username } });
   if (userExists) throw ERRORS.USER.ALREADY_TAKEN;
 
-  const response = await User.create({ ...user });
+  const passwordHash = encryptPassword(user.password);
+  const response = await User.create({ ...user, password: passwordHash });
 
   return getPublicUser(response);
 };

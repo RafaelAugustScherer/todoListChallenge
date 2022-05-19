@@ -15,12 +15,28 @@
 .loginForm h2 {
   font-size: 26px;
   font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.errorMessage, .successMessage {
+  position: absolute;
+  margin-top: 60px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.errorMessage {
+  color: #dc5f5f;
+}
+
+.successMessage {
+  color: #85dc5f;
 }
 
 .loginForm input {
   font-size: 16px;
   width: 70%;
-  margin: 10px;
+  margin: 10px 0;
   padding: 5px;
   border: 1px solid darkgray;
   color: black;
@@ -29,4 +45,39 @@
 
 .loginForm input:focus {
   outline: none;
+}
+
+.loginButtonsDiv {
+  display:flex;
+  justify-content: space-between;
+  width: 72%;
+  margin-top: 10px;
+}
+
+.createUserBtn, .loginBtn, .logoutBtn {
+  font-size: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  transition: 1s;
+}
+
+.createUserBtn, .loginBtn {
+  background-color: #BDB76B;
+}
+
+.logoutBtn {
+  background-color: #dc5f5f;
+  width: 72%;
+  margin-top: 10px;
+}
+
+.createUserBtn:hover, .loginBtn:hover {
+  background-color: #a39e5b;
+}
+
+.logoutBtn:hover {
+  background-color: #c84a4a;
 }

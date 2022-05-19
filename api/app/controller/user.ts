@@ -9,10 +9,10 @@ const login: RequestHandler = async (_req, res) => {
 };
 
 const findOne: RequestHandler = async (_req, res) => {
-  const { filter } = res.locals;
-  const user = await userService.findOne(filter);
+  const { filter, user } = res.locals;
+  const publicUser = await userService.findOne(filter|| { username: user.username });
   
-  return res.status(200).json(user);
+  return res.status(200).json(publicUser);
 };
 
 const create: RequestHandler = async (_req, res) => {

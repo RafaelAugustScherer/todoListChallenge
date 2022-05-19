@@ -4,11 +4,13 @@ const Table = () => {
   return (
     <div className={ styles.taskTableContainer }>
       <table className={ styles.taskTable }>
-        <td>
-          <th>Descrição</th>
-          <th>Horário</th>
-          <th>Editar</th>
-        </td>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Horário</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
       </table>
     </div>
   );

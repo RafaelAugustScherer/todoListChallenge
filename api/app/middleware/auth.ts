@@ -1,10 +1,11 @@
 import { RequestHandler } from 'express';
-import JWT from 'jsonwebtoken';
+import JWT, { JwtPayload } from 'jsonwebtoken';
 import { ERRORS } from '../utils/error';
 
 const generateToken: RequestHandler = async (req, res, next) => {
   const { JWT_SECRET = '' } = process.env;
   const { username, password } = req.body;
+  console.log(username, password);
   
   const user = { username, password };
 
@@ -21,7 +22,7 @@ const validateToken: RequestHandler = async (req, res, next) => {
   if (!token) throw ERRORS.AUTH.TOKEN_NOT_FOUND;
 
   try {
-    const user = JWT.verify(token, JWT_SECRET);
+    const { iat, exp, ...user } = JWT.verify(token, JWT_SECRET) as JwtPayload;
     res.locals.user = user;
 
     return next();

@@ -7,7 +7,7 @@ import authMiddleware from '../middleware/auth';
 const userRouter = Router();
 
 userRouter.route('/login')
-  .get(
+  .post(
     userMiddleware.validateLogin,
     authMiddleware.generateToken,
     userController.login,
@@ -23,6 +23,5 @@ userRouter.route('/user')
     userMiddleware.validateCreate,
     userController.create,
   );
-
 
 export default userRouter;

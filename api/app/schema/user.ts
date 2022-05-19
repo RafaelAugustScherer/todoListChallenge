@@ -8,7 +8,7 @@ const login = Joi.object({
 const filter = Joi.object({
   id: Joi.number().min(1),
   username: Joi.string(),
-}).or('id', 'username');
+});
 
 const create = Joi.object({
   username: Joi.string().min(6).required(),

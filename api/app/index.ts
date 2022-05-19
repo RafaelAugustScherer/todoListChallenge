@@ -22,7 +22,7 @@ class App {
   public start() {
     checkEnvironment();
 
-    const APP_PORT = process.env.APP_PORT || 3000;
+    const APP_PORT = process.env.APP_PORT || 3001;
     this.app.listen(
       APP_PORT,
       () => console.log(`Api is running at port: ${APP_PORT}`),

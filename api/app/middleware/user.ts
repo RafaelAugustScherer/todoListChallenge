@@ -1,6 +1,10 @@
 import { RequestHandler } from 'express';
 import schema from '../schema/user';
 
+const objectIsEmpty = (object: any) => (
+  Object.entries(object).every(([, value]) => value === undefined)
+);
+
 const validateLogin: RequestHandler = async (req, res, next) => {
   const { username, password } = req.body;
 
@@ -12,7 +16,8 @@ const validateLogin: RequestHandler = async (req, res, next) => {
 
 const validateFilter: RequestHandler = async (req, res, next) => {
   const { id, username } = req.body;
-
+  if (objectIsEmpty({ id, username })) return next();
+  
   const filter = await schema.filter.validateAsync({ id, username });
   res.locals.filter = filter;
 
