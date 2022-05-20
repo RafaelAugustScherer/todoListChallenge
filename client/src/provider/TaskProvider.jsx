@@ -38,9 +38,23 @@ const TaskProvider = ({ children }) => {
         payload,
         { headers: { 'Authorization': token } }
       );
-      setTasks([ ...tasks, data ]);
+      const newTask = { ...data, status: taskStatusTranslate[data.status] };
+      setTasks([ ...tasks, newTask ]);
     } catch(e) {}
   };
+
+  const deleteTask = async (taskId) => {
+    const { token } = user;
+
+    try {
+      await axios.delete(
+        `${REACT_APP_API_URL}/task/${taskId}`,
+        { headers: { 'Authorization': token } }
+      );
+      const newTasks = tasks.filter(({ id }) => id !== taskId);
+      setTasks(newTasks);
+    } catch(e) {}
+  }
 
   useEffect(() => {
     fetchTasks();
@@ -49,6 +63,7 @@ const TaskProvider = ({ children }) => {
   const value = {
     tasks,
     createTask,
+    deleteTask,
   };
 
   return (
