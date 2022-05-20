@@ -31,6 +31,6 @@ Infelizmente não consegui me aprofundar na parte de testes durante o tempo dete
   - Inicialize o front-end com o comando `npm start`
 
 ### Features a serem implementadas
-- Testes unitários no Back-end
+- Testes de integração no Back-end
 - Integração com Docker
 - Fluxo Deploy CI/CD Heroku "Containerizado"
