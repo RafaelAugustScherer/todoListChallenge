@@ -17,4 +17,11 @@ taskRouter.route('/task')
     taskController.create,
   );
 
+taskRouter.route('/task/:id')
+  .delete(
+    authMiddleware.validateToken,
+    taskMiddleware.validateRemove,
+    taskController.remove,
+  );
+
 export default taskRouter;

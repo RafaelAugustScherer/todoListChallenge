@@ -2,9 +2,10 @@ import Task from '../../database/models/task';
 import userService from './user';
 import { IUser } from '../interface/user';
 import { ITask, ITaskPublic } from '../interface/task';
+import { ERRORS } from '../utils/error';
 
 const getPublicTask = (task: Task): ITaskPublic => {
-  const { id, userId, ...publicTask } = task.get();
+  const { userId, ...publicTask } = task.get();
   return publicTask;
 };
 
@@ -30,7 +31,16 @@ const create = async (task: ITask, user: IUser): Promise<ITaskPublic> => {
   return getPublicTask(response);
 };
 
+const remove = async (taskId: number, user: IUser): Promise<void> => {
+  const tasks = await findAll(user);
+
+  if (!tasks.find(({ id }) => id === taskId)) throw ERRORS.TASK.NOT_FOUND;
+  
+  await Task.destroy({ where: { id: taskId } });
+};
+
 export default {
   findAll,
   create,
+  remove,
 };

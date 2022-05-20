@@ -10,6 +10,16 @@ const validateCreate: RequestHandler = async (req, res, next) => {
   return next();
 };
 
+const validateRemove: RequestHandler = async (req, res, next) => {
+  const { id } = req.params;
+
+  const task = await schema.remove.validateAsync({ id });
+  res.locals.task = task;
+
+  return next();
+};
+
 export default {
   validateCreate,
+  validateRemove,
 };

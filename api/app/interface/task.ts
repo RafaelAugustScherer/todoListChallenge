@@ -12,6 +12,7 @@ export interface ITask {
 }
 
 export interface ITaskPublic {
+  id: number,
   name: string,
   status: validStatus,
   createdAt: Date,

@@ -15,7 +15,15 @@ const create: RequestHandler = async (_req, res) => {
   return res.status(201).json(publicTask);
 };
 
+const remove: RequestHandler = async (_req, res) => {
+  const { task, user } = res.locals;
+  await taskService.remove(task.id, user);
+
+  return res.status(204).end();
+};
+
 export default {
   findAll,
   create,
+  remove,
 };
