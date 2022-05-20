@@ -8,7 +8,7 @@ const getCookie = (name) => {
   const cookieValue = cookie ? cookie.split('=')[1] : undefined;
   
   return cookieValue;
-}
+};
 
 const setCookie = (name, value, expiryInHours) => {
   const expiryDate = new Date();
@@ -16,11 +16,11 @@ const setCookie = (name, value, expiryInHours) => {
   const expires = `expires=${expiryDate.toUTCString()}`;
 
   document.cookie = `${name}=${value};${expires};path=/`;
-}
+};
 
 const deleteCookie = (name) => {
   document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
-}
+};
 
 const cookieUtl = {
   getCookie,

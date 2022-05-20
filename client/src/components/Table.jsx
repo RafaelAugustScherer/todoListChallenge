@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react';
+import { React, useContext, useState } from 'react';
 import { MdCheck, MdClose } from 'react-icons/md';
 import { TaskContext } from '../provider/TaskProvider';
 import { UserContext } from '../provider/UserProvider';
 import styles from './styles/Table.module.css';
 
 const Table = () => {
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
   const { tasks, createTask, deleteTask } = useContext(TaskContext);
   const [taskForm, setTaskForm] = useState({
     name: '',
@@ -96,6 +96,6 @@ const Table = () => {
       </table>
     </div>
   );
-}
+};
 
 export default Table;

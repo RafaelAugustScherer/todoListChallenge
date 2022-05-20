@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { React, createContext, useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { UserContext } from './UserProvider';
 
@@ -22,7 +23,7 @@ const TaskProvider = ({ children }) => {
       try {
         const { data } = await axios.get(`${REACT_APP_API_URL}/task`, { headers: { 'Authorization': token } });
         const newTasks = data.map(
-          (task) => ({ ...task, status: taskStatusTranslate[task.status] })
+          (task) => ({ ...task, status: taskStatusTranslate[task.status] }),
         );
         setTasks(newTasks);
       } catch (e) {}
@@ -36,7 +37,7 @@ const TaskProvider = ({ children }) => {
       const { data } = await axios.post(
         `${REACT_APP_API_URL}/task`,
         payload,
-        { headers: { 'Authorization': token } }
+        { headers: { 'Authorization': token } },
       );
       const newTask = { ...data, status: taskStatusTranslate[data.status] };
       setTasks([ ...tasks, newTask ]);
@@ -49,12 +50,12 @@ const TaskProvider = ({ children }) => {
     try {
       await axios.delete(
         `${REACT_APP_API_URL}/task/${taskId}`,
-        { headers: { 'Authorization': token } }
+        { headers: { 'Authorization': token } },
       );
       const newTasks = tasks.filter(({ id }) => id !== taskId);
       setTasks(newTasks);
     } catch(e) {}
-  }
+  };
 
   useEffect(() => {
     fetchTasks();
@@ -73,7 +74,8 @@ const TaskProvider = ({ children }) => {
   );
 };
 
+TaskProvider.propTypes = {
+  children: PropTypes.any,
+};
+
 export default TaskProvider;
-
-
-

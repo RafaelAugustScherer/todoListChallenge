@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from 'react';
+import { React, createContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import cookieUtil from '../utils/cookie';
 
@@ -12,7 +13,7 @@ const UserProvider = ({ children }) => {
     Object.values(user).forEach((v) => {
       if (v === '') throw Error('Fields cannot be empty');
     });
-  }
+  };
 
   const login = async (payload) => {
     validateEmptyFields(payload);
@@ -26,23 +27,23 @@ const UserProvider = ({ children }) => {
     } catch ({ response }) {
       throw Error(response.data.message);
     }
-  }
+  };
 
   const createUser = async (payload) => {
     validateEmptyFields(payload);
 
     try {
       await axios.post(`${REACT_APP_API_URL}/user`, payload);
-      return 'User created!'
+      return 'User created!';
     } catch ({ response }) {
       throw Error(response.data.message);
     }
-  }
+  };
 
   const logout = () => {
     cookieUtil.deleteCookie('token');
     setUser({});
-  }
+  };
 
   const fetchUser = async () => {
     const token = cookieUtil.getCookie('token');
@@ -71,6 +72,10 @@ const UserProvider = ({ children }) => {
       { children }
     </UserContext.Provider>
   );
+};
+
+UserProvider.propTypes = {
+  children: PropTypes.any,
 };
 
 export default UserProvider;

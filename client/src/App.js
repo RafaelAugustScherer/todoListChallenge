@@ -1,3 +1,4 @@
+import React from 'react';
 import UserProvider from './provider/UserProvider';
 import Header from './components/Header';
 import Login from './components/Login';
@@ -15,6 +16,6 @@ const App = () => {
       </TaskProvider>
     </UserProvider>
   );
-}
+};
 
 export default App;

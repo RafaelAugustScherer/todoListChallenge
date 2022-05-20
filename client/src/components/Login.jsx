@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { React, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../provider/UserProvider';
 import styles from './styles/Login.module.css';
 
@@ -25,7 +25,7 @@ const Login = () => {
     } catch (e) {
       setApiMessage({ message: e.message, type: 'error' });
     }
-  }
+  };
 
   useEffect(() => {
     setTimeout(() => setApiMessage(undefined), 5000);
@@ -91,7 +91,7 @@ const Login = () => {
           )
         }
     </form>
-  )
-}
+  );
+};
 
 export default Login;
